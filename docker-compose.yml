@@ -1,0 +1,15 @@
+version: "3"
+services:
+  jupyter:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 200M
+    ports:
+      - 8888:8888
+    volumes:
+      - ./src:/home/jovyan
