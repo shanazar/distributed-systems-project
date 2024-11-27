@@ -1,0 +1,4 @@
+polars
+pandas
+dask[dataframe]
+duckdb

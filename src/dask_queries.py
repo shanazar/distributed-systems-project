@@ -1,8 +1,10 @@
 def query_01(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     VAR1 = datetime(1998, 9, 2)
-    lineitem_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
 
     lineitem_filtered = lineitem_ds[lineitem_ds.l_shipdate <= VAR1]
     lineitem_filtered["sum_qty"] = lineitem_filtered.l_quantity
@@ -39,6 +41,8 @@ def query_01(dataset_path, scale):
 
 def query_02(dataset_path, scale):
     import dask.dataframe as dd
+    import warnings
+    warnings.filterwarnings("ignore")
     from datetime import datetime
     var1 = 15
     var2 = "BRASS"
@@ -111,11 +115,13 @@ def query_02(dataset_path, scale):
 def query_03(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     var1 = datetime.strptime("1995-03-15", "%Y-%m-%d")
     var2 = "BUILDING"
 
-    lineitem_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv')
+    lineitem_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv',  parse_dates=['o_orderdate'])
     cutomer_ds = dd.read_csv(f'{dataset_path}/customer.csv')
 
     lsel = lineitem_ds.l_shipdate > var1
@@ -142,11 +148,13 @@ def query_03(dataset_path, scale):
 def query_04(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     date1 = datetime.strptime("1993-10-01", "%Y-%m-%d")
     date2 = datetime.strptime("1993-07-01", "%Y-%m-%d")
 
-    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv')
+    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
 
     lsel = line_item_ds.l_commitdate < line_item_ds.l_receiptdate
     osel = (orders_ds.o_orderdate < date1) & (orders_ds.o_orderdate >= date2)
@@ -168,14 +176,16 @@ def query_04(dataset_path, scale):
 def query_05(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     date1 = datetime.strptime("1994-01-01", "%Y-%m-%d")
     date2 = datetime.strptime("1995-01-01", "%Y-%m-%d")
 
     region_ds = dd.read_csv(f'{dataset_path}/region.csv')
     nation_ds = dd.read_csv(f'{dataset_path}/nation.csv')
     customer_ds = dd.read_csv(f'{dataset_path}/customer.csv')
-    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv')
+    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     supplier_ds = dd.read_csv(f'{dataset_path}/supplier.csv')
 
     rsel = region_ds.r_name == "ASIA"
@@ -199,11 +209,13 @@ def query_05(dataset_path, scale):
 def query_06(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     date1 = datetime.strptime("1994-01-01", "%Y-%m-%d")
     date2 = datetime.strptime("1995-01-01", "%Y-%m-%d")
     var3 = 24
 
-    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
 
     sel = (
         (line_item_ds.l_shipdate >= date1)
@@ -221,13 +233,15 @@ def query_06(dataset_path, scale):
 def query_07(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     var1 = datetime.strptime("1995-01-01", "%Y-%m-%d")
     var2 = datetime.strptime("1997-01-01", "%Y-%m-%d")
 
     nation_ds = dd.read_csv(f'{dataset_path}/nation.csv')
     customer_ds = dd.read_csv(f'{dataset_path}/customer.csv')
-    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv')
+    line_item_ds = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     supplier_ds = dd.read_csv(f'{dataset_path}/supplier.csv')
 
     lineitem_filtered = line_item_ds[
@@ -318,12 +332,14 @@ def query_07(dataset_path, scale):
 def query_08(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     var1 = datetime.strptime("1995-01-01", "%Y-%m-%d")
     var2 = datetime.strptime("1997-01-01", "%Y-%m-%d")
 
     supplier = dd.read_csv(f'{dataset_path}/supplier.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     customer = dd.read_csv(f'{dataset_path}/customer.csv')
     nation = dd.read_csv(f'{dataset_path}/nation.csv')
     region = dd.read_csv(f'{dataset_path}/region.csv')
@@ -378,6 +394,8 @@ def query_08(dataset_path, scale):
 def query_09(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         nation,
@@ -416,8 +434,8 @@ def query_09(dataset_path, scale):
     part = dd.read_csv(f'{dataset_path}/part.csv')
     partsupp = dd.read_csv(f'{dataset_path}/partsupp.csv')
     supplier = dd.read_csv(f'{dataset_path}/supplier.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     nation = dd.read_csv(f'{dataset_path}/nation.csv')
 
     part = part[part.p_name.str.contains("green")]
@@ -455,6 +473,8 @@ def query_09(dataset_path, scale):
 def query_10(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         c_custkey,
@@ -490,8 +510,8 @@ def query_10(dataset_path, scale):
     limit 20
     """
     customer = dd.read_csv(f'{dataset_path}/customer.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     nation = dd.read_csv(f'{dataset_path}/nation.csv')
 
     orderdate_from = datetime.strptime("1993-10-01", "%Y-%m-%d")
@@ -551,6 +571,8 @@ def query_10(dataset_path, scale):
 def query_11(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         ps_partkey,
@@ -608,6 +630,8 @@ def query_11(dataset_path, scale):
 def query_12(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime, timedelta
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         l_shipmode,
@@ -638,8 +662,8 @@ def query_12(dataset_path, scale):
     order by
         l_shipmode
     """
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
 
     receiptdate_from = datetime.strptime("1994-01-01", "%Y-%m-%d")
     receiptdate_to = receiptdate_from + timedelta(days=365)
@@ -670,6 +694,8 @@ def query_12(dataset_path, scale):
 def query_13(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         c_count, count(*) as custdist
@@ -691,7 +717,7 @@ def query_13(dataset_path, scale):
         c_count desc
     """
     customer = dd.read_csv(f'{dataset_path}/customer.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     orders = orders[~orders.o_comment.str.contains("special.*requests")]
     subquery = customer.merge(
         orders, left_on="c_custkey", right_on="o_custkey", how="left"
@@ -716,6 +742,8 @@ def query_13(dataset_path, scale):
 def query_14(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         round(100.00 * sum(case
@@ -731,7 +759,7 @@ def query_14(dataset_path, scale):
         and l_shipdate >= date '1995-09-01'
         and l_shipdate < date '1995-09-01' + interval '1' month
     """
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     part = dd.read_csv(f'{dataset_path}/part.csv')
 
     shipdate_from = datetime.strptime("1995-09-01", "%Y-%m-%d")
@@ -765,6 +793,8 @@ def query_14(dataset_path, scale):
 def query_15(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     DDL:
     create temp view revenue (supplier_no, total_revenue) as
@@ -800,7 +830,7 @@ def query_15(dataset_path, scale):
     order by
         s_suppkey
     """
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     supplier = dd.read_csv(f'{dataset_path}/supplier.csv')
 
     shipdate_from = datetime.strptime("1996-01-01", "%Y-%m-%d")
@@ -831,6 +861,8 @@ def query_15(dataset_path, scale):
 def query_16(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         p_brand,
@@ -895,6 +927,8 @@ def query_16(dataset_path, scale):
 def query_17(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         round(sum(l_extendedprice) / 7.0, 2) as avg_yearly
@@ -914,7 +948,7 @@ def query_17(dataset_path, scale):
                 l_partkey = p_partkey
         )
     """
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     part = dd.read_csv(f'{dataset_path}/part.csv')
 
     joined = lineitem.merge(
@@ -941,6 +975,8 @@ def query_17(dataset_path, scale):
 def query_18(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         c_name,
@@ -977,8 +1013,8 @@ def query_18(dataset_path, scale):
     limit 100
     """
     customer = dd.read_csv(f'{dataset_path}/customer.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
 
     # FIXME: https://github.com/dask-contrib/dask-expr/issues/867
     qnt_over_300 = (
@@ -1009,6 +1045,8 @@ def query_18(dataset_path, scale):
 def query_19(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         round(sum(l_extendedprice* (1 - l_discount)), 2) as revenue
@@ -1046,7 +1084,7 @@ def query_19(dataset_path, scale):
             and l_shipinstruct = 'DELIVER IN PERSON'
         )
     """
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     part = dd.read_csv(f'{dataset_path}/part.csv')
 
     table = lineitem.merge(part, left_on="l_partkey", right_on="p_partkey")
@@ -1088,6 +1126,8 @@ def query_19(dataset_path, scale):
 def query_20(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         s_name,
@@ -1127,7 +1167,7 @@ def query_20(dataset_path, scale):
     order by
         s_name
     """
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     supplier = dd.read_csv(f'{dataset_path}/supplier.csv')
     nation = dd.read_csv(f'{dataset_path}/nation.csv')
     part = dd.read_csv(f'{dataset_path}/part.csv')
@@ -1169,6 +1209,8 @@ def query_20(dataset_path, scale):
 def query_21(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         s_name,
@@ -1212,8 +1254,8 @@ def query_21(dataset_path, scale):
     limit 100
     """
     supplier = dd.read_csv(f'{dataset_path}/supplier.csv')
-    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv')
-    orders = dd.read_csv(f'{dataset_path}/orders.csv')
+    lineitem = dd.read_csv(f'{dataset_path}/lineitem.csv', parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
+    orders = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     nation = dd.read_csv(f'{dataset_path}/nation.csv')
 
     NATION = "SAUDI ARABIA"
@@ -1259,6 +1301,8 @@ def query_21(dataset_path, scale):
 def query_22(dataset_path, scale):
     import dask.dataframe as dd
     from datetime import datetime
+    import warnings
+    warnings.filterwarnings("ignore")
     """
     select
         cntrycode,
@@ -1297,7 +1341,7 @@ def query_22(dataset_path, scale):
     order by
         cntrycode
     """
-    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv')
+    orders_ds = dd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     customer_ds = dd.read_csv(f'{dataset_path}/customer.csv')
 
     customers = customer_ds

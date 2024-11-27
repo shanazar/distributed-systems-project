@@ -4,7 +4,7 @@ from duckdb.duckdb import dtype
 def query_01(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
     date = pd.Timestamp("1998-09-02")
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -65,7 +65,7 @@ def query_01(dataset_path, scale):
 def query_02(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     part = pd.read_csv(f'{dataset_path}/part.csv')
     partsupp = pd.read_csv(f'{dataset_path}/partsupp.csv')
@@ -179,7 +179,7 @@ def query_03(dataset_path, scale):
     import pandas as pd
     from datetime import datetime
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     orders = pd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
@@ -216,7 +216,7 @@ def query_03(dataset_path, scale):
 def query_04(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
     orders = pd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
@@ -238,7 +238,7 @@ def query_04(dataset_path, scale):
 def query_05(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -270,7 +270,7 @@ def query_05(dataset_path, scale):
 def query_06(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -295,7 +295,7 @@ def query_06(dataset_path, scale):
 def query_07(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -392,7 +392,7 @@ def query_07(dataset_path, scale):
 def query_08(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -465,7 +465,7 @@ def query_08(dataset_path, scale):
 def query_09(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -496,7 +496,7 @@ def query_09(dataset_path, scale):
 def query_10(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -533,7 +533,7 @@ def query_10(dataset_path, scale):
 def query_11(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     nation = pd.read_csv(f'{dataset_path}/nation.csv')
     partsupp = pd.read_csv(f'{dataset_path}/partsupp.csv')
@@ -565,7 +565,7 @@ def query_11(dataset_path, scale):
 def query_12(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -600,7 +600,7 @@ def query_12(dataset_path, scale):
 def query_13(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     orders = pd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     customer = pd.read_csv(f'{dataset_path}/customer.csv')
@@ -625,7 +625,7 @@ def query_13(dataset_path, scale):
 def query_14(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -651,7 +651,7 @@ def query_14(dataset_path, scale):
 def query_15(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -688,7 +688,7 @@ def query_15(dataset_path, scale):
 def query_16(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     part = pd.read_csv(f'{dataset_path}/part.csv')
     partsupp = pd.read_csv(f'{dataset_path}/partsupp.csv')
@@ -729,7 +729,7 @@ def query_16(dataset_path, scale):
 def query_17(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -760,7 +760,7 @@ def query_17(dataset_path, scale):
 def query_18(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -782,7 +782,7 @@ def query_18(dataset_path, scale):
 def query_19(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -888,7 +888,7 @@ def query_19(dataset_path, scale):
 def query_20(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -926,7 +926,7 @@ def query_20(dataset_path, scale):
 def query_21(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     lineitem = pd.read_csv(f'{dataset_path}/lineitem.csv',
                            parse_dates=['l_shipdate', 'l_commitdate', 'l_receiptdate'])
@@ -1000,7 +1000,7 @@ def query_21(dataset_path, scale):
 def query_22(dataset_path, scale):
     import pandas as pd
     import warnings
-    warnings.simplefilter(action='ignore', category=FutureWarning)
+    warnings.filterwarnings("ignore")
 
     orders = pd.read_csv(f'{dataset_path}/orders.csv', parse_dates=['o_orderdate'])
     customer = pd.read_csv(f'{dataset_path}/customer.csv')
